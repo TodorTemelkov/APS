@@ -1,0 +1,41 @@
+public class Main <E extends Comparable<E>> {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        SLL<Integer> list1=new SLL<>();
+        SLL<Integer> list2=new SLL<>();
+        SLL<Integer> result_list=new SLL<>();
+        for(int i=0;i<n;i++) {
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            list1.insertLast(a);
+            list2.insertLast(b);
+        }
+        SLLNode<Integer> node1=list1.getFirst();
+        SLLNode<Integer> node2=list2.getFirst();
+        while(node1!=null && node2!=null) {
+            if(node1.element.compareTo(node2.element)<0) {
+                result_list.insertLast(node1.element);
+                node1=node1.succ;
+            }else{
+                result_list.insertLast(node2.element);
+                node2=node2.succ;
+            }
+        }
+        System.out.println(result_list);
+        if(node1!=null ) {
+            while (node1 != null) {
+                result_list.insertLast(node1.element);
+                node1 = node1.succ;
+            }
+        }
+        if(node2!=null ) {
+            while (node2 != null) {
+                result_list.insertLast(node2.element);
+                node2 = node2.succ;
+            }
+        }
+        System.out.println(result_list);
+    }
+
+    }
