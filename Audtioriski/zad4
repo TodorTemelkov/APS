@@ -1,0 +1,29 @@
+public class Main <E extends Comparable<E>> {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        DLL<Integer> list =new DLL<>();
+        DLL<Integer> list2 =new DLL<>();
+        DLL<Integer> list3 =new DLL<>();
+        for(int i=0;i<n;i++) {
+            int a=sc.nextInt();
+            list.insertLast(a);
+        }
+        DLLNode<Integer> tmp=list.getFirst();
+        DLLNode<Integer> tmp2=list.getLast();
+        Boolean flag=false;
+        while(tmp!=null&&tmp2!=null) {
+        if(tmp.element.equals(tmp2.element)) {
+            flag=true;
+        }
+            tmp=tmp.succ;
+            tmp2=tmp2.pred;
+        }
+      if(flag) {
+          System.out.println("Listata e palindrom");
+      }else{
+          System.out.println("Ne e");
+      }
+    }
+
+    }
