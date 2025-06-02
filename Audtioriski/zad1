@@ -1,0 +1,25 @@
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n= sc.nextInt();
+        Array<Integer> arr1=new Array<>(n);
+        Array<Integer> arr2=new Array<>(n);
+        for(int i=0;i<n;i++) {
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            arr1.insertLast(a);
+            arr2.insertLast(b);
+        }
+        System.out.println(arr1);
+        System.out.println(arr2);
+        for(int i=0;i<n;i++) {
+            if(arr1.get(i)==arr2.get(i)) {
+                arr1.delete(i);
+                arr2.delete(i);
+                n--;
+            }
+        }
+        System.out.println(arr1);
+        System.out.println(arr2);
+        }
+    }
