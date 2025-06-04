@@ -1,0 +1,48 @@
+}
+class Student{
+    String name;
+    int time;
+
+    public Student(String name, int time) {
+        this.name = name;
+        this.time = time;
+    }
+}
+
+public class Main {
+    static Student getlast(ArrayQueue<Student> students) {
+        int minutes=180;
+        Student tempStudent=students.peek();
+        while(tempStudent!=null) {
+            if(tempStudent.time>minutes){
+                break;
+            }
+            if (tempStudent.time < minutes) {
+                students.dequeue();
+                minutes -= tempStudent.time;
+            }
+            tempStudent=students.peek();
+        }
+        return tempStudent;
+    }
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n=input.nextInt();
+        boolean flag = true;
+        ArrayQueue<Student> queue=new ArrayQueue<>(n);
+        for(int i=0;i<n;i++) {
+            String name=input.next();
+            int time=input.nextInt();
+            Student student=new Student(name,time);
+            queue.enqueue(student);
+        }
+        Student student=getlast(queue);
+        if(queue.isEmpty()) {
+            System.out.println("SITE SE OPSLUZENI");
+        }else{
+            System.out.println(student.name);
+            System.out.println(student.time);
+        }
+
+    }
+}
