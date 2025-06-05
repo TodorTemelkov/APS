@@ -1,0 +1,56 @@
+class Lecture{
+    String date;
+    String time;
+    String place;
+    Integer fee;
+
+    public Lecture(String date, String time, String place, Integer fee) {
+        this.date = date;
+        this.time = time;
+        this.place = place;
+        this.fee = fee;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public Integer getFee() {
+        return fee;
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int N=input.nextInt();
+        input.nextLine();
+        CBHT<String,Lecture> map=new CBHT<>(23);
+        for(int i=0;i<N;i++) {
+        Lecture l=new Lecture(input.next(),input.next(),input.next(),input.nextInt());
+        if(map.search(l.getDate())==null){
+            map.insert(l.getDate(),l);
+        }else{
+            SLLNode<MapEntry<String,Lecture>> best_date=map.search(l.getDate());
+            Lecture best_lecture=best_date.element.value;
+            if(l.getFee()>best_lecture.getFee()){
+                map.insert(l.getDate(),l);
+            }
+        }
+        }
+        SLLNode<MapEntry<String,Lecture>> best_date=map.search(input.next());
+        if(best_date==null){
+            System.out.println("nema takva data");
+        }else{
+            System.out.println(best_date.element.value.getFee()+" "+best_date.element.value.getTime()+" "+best_date.element.value.getPlace());
+        }
+    }
+}
