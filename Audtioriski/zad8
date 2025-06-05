@@ -1,0 +1,25 @@
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int N=input.nextInt();
+        input.nextLine();
+        CBHT<String,Integer> map=new CBHT<>(23);
+        for(int i=0;i<N;i++) {
+            String []parts=input.nextLine().split("\\.");
+            if(map.search(parts[1])==null)
+                map.insert(parts[1], 1);
+            else{
+                SLLNode<MapEntry<String,Integer>> result=map.search(parts[1]);
+                map.insert(parts[1], result.element.value+1);
+            }
+        }
+        String month=input.nextLine();
+        SLLNode<MapEntry<String,Integer>> result=map.search(month);
+        if(result==null) {
+            System.out.println("No such month");
+        }else {
+            System.out.println(result.element.value);
+        }
+    }
+}
